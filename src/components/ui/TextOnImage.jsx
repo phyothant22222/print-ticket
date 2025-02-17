@@ -112,7 +112,7 @@ const TextOnImageEditor = () => {
             ctx.drawImage(img, 0, 0);
 
             // Calculate font size based on image dimensions
-            const fontSize = 20;
+            const fontSize = 18;
             ctx.font = `500 ${fontSize}px "Noto Sans Myanmar"`;
             ctx.fillStyle = 'black';
 
