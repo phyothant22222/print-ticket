@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Pyidaungsu';
+    src: url('/public/fonts/Pyidaungsu.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Fallback font stack */
+.custom-font {
+    font-family: 'Pyidaungsu', cursive, sans-serif;
+}
