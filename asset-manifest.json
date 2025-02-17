@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/printer/static/css/main.497b4313.css",
-    "main.js": "/printer/static/js/main.a27756b4.js",
-    "static/js/453.deb82ef9.chunk.js": "/printer/static/js/453.deb82ef9.chunk.js",
-    "static/media/Pyidaungsu.ttf": "/printer/static/media/Pyidaungsu.8338ed3f9f50c721867a.ttf",
-    "index.html": "/printer/index.html",
-    "main.497b4313.css.map": "/printer/static/css/main.497b4313.css.map",
-    "main.a27756b4.js.map": "/printer/static/js/main.a27756b4.js.map",
-    "453.deb82ef9.chunk.js.map": "/printer/static/js/453.deb82ef9.chunk.js.map"
+    "main.css": "/print-ticket/static/css/main.a5364038.css",
+    "main.js": "/print-ticket/static/js/main.43d99b42.js",
+    "static/js/453.deb82ef9.chunk.js": "/print-ticket/static/js/453.deb82ef9.chunk.js",
+    "static/media/Pyidaungsu.ttf": "/print-ticket/static/media/Pyidaungsu.8338ed3f9f50c721867a.ttf",
+    "index.html": "/print-ticket/index.html",
+    "main.a5364038.css.map": "/print-ticket/static/css/main.a5364038.css.map",
+    "main.43d99b42.js.map": "/print-ticket/static/js/main.43d99b42.js.map",
+    "453.deb82ef9.chunk.js.map": "/print-ticket/static/js/453.deb82ef9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.497b4313.css",
-    "static/js/main.a27756b4.js"
+    "static/css/main.a5364038.css",
+    "static/js/main.43d99b42.js"
   ]
 }
