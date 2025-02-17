@@ -265,7 +265,7 @@ const TextOnImageEditor = () => {
                             <img
                                 src={processedImage}
                                 alt="Processed"
-                                className="max-w-full max-h-128 object-contain rounded-lg"
+                                className="max-w-full max-h-[800px] object-contain rounded-lg"
                             />
                         </div>
                         <Button
