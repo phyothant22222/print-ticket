@@ -9,7 +9,7 @@ import { Textarea } from './textarea';
 
 const TextOnImageEditor = () => {
     const [image, setImage] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
+    const [imagePreview, setImagePreview] = useState(process.env.PUBLIC_URL + '/template.png');
     const [text1, setText1] = useState('');
     const [text2, setText2] = useState('');
     const [text3, setText3] = useState('');
@@ -26,7 +26,11 @@ const TextOnImageEditor = () => {
             fontLink.rel = 'stylesheet';
 
             document.head.appendChild(fontLink);
-
+            const defaultImage = new Image();
+            defaultImage.src = imagePreview;
+            defaultImage.onload = () => {
+                setImage(defaultImage);
+            };
             // Wait for fonts to load
             await document.fonts.ready;
             setCustomFontsLoaded(true);
@@ -97,11 +101,11 @@ const TextOnImageEditor = () => {
             canvas.width = img.width;
             canvas.height = img.height;
             let dateX = img.width - 240;
-            let dateY = img.height / 4.6;
+            let dateY = img.height / 4.8;
             let toX = img.width / 4.5;
-            let toY = img.height / 3.76;
+            let toY = img.height / 3.95;
             let fromX = img.width / 4.5;
-            let fromY = img.height / 2.9;
+            let fromY = img.height / 2.92;
             let descX = img.width / 4.5;
             let descY = img.height / 1.92;
             // Draw image
