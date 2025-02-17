@@ -26,12 +26,13 @@ const TextOnImageEditor = () => {
             fontLink.rel = 'stylesheet';
 
             document.head.appendChild(fontLink);
-            const defaultImage = new Image();
-            defaultImage.src = imagePreview;
-            defaultImage.onload = () => {
-                setImage(defaultImage);
-            };
+            // const defaultImage = new Image();
+            // defaultImage.src = imagePreview;
+            // defaultImage.onload = () => {
+            //     setImage(defaultImage);
+            // };
             // Wait for fonts to load
+
             await document.fonts.ready;
             setCustomFontsLoaded(true);
         };
@@ -88,18 +89,68 @@ const TextOnImageEditor = () => {
             ctx.fillText(lines[i], x, curY);
         }
     };
+    const detectBrowser = () => {
+        const userAgent = navigator.userAgent;
+
+        const browserPatterns = {
+            firefox: { name: 'Firefox', regex: /Firefox\/([0-9.]+)/ },
+            edge: { name: 'Edge', regex: /Edge\/([0-9.]+)/ },
+            chrome: { name: 'Chrome', regex: /Chrome\/([0-9.]+)/ },
+            safari: { name: 'Safari', regex: /Version\/([0-9.]+).*Safari/ },
+            opera: { name: 'Opera', regex: /(?:Opera|OPR)\/([0-9.]+)/ }
+        };
+
+        const osPatterns = {
+            windows: { name: 'Windows', regex: /Windows/ },
+            mac: { name: 'MacOS', regex: /Macintosh|Mac OS X/ },
+            linux: { name: 'Linux', regex: /Linux/ },
+            android: { name: 'Android', regex: /Android/ },
+            ios: { name: 'iOS', regex: /iPhone|iPad|iPod/ }
+        };
+
+        // Detect browser and version
+        const browser = Object.values(browserPatterns).find(
+            ({ regex }) => regex.test(userAgent)
+        ) || { name: 'Unknown', regex: null };
+
+        const version = browser.regex
+            ? userAgent.match(browser.regex)?.[1] || 'Unknown'
+            : 'Unknown';
+
+        // Detect OS
+        const os = Object.values(osPatterns).find(
+            ({ regex }) => regex.test(userAgent)
+        )?.name || 'Unknown';
+
+        // Detect mobile
+        const isMobile = /Mobi|Android/i.test(userAgent);
+
+        return {
+            name: browser.name,
+            version,
+            os,
+            mobile: isMobile
+        };
+    };
     const processImage = () => {
-        if (!image) return;
+        if (!image) {
+            const defaultImage = new Image();
+            defaultImage.src = imagePreview;
+            defaultImage.onload = () => {
+                setImage(defaultImage);
+            };
+        };
 
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         const img = new Image();
 
         img.onload = () => {
-
+            const browserInfo = detectBrowser();
             // Set canvas dimensions to match image
             canvas.width = img.width;
             canvas.height = img.height;
+
             let dateX = img.width - 240;
             let dateY = img.height / 4.8;
             let toX = img.width / 4.5;
@@ -108,6 +159,11 @@ const TextOnImageEditor = () => {
             let fromY = img.height / 2.92;
             let descX = img.width / 4.5;
             let descY = img.height / 1.92;
+            if (browserInfo.name !== 'Safari') {
+                toY = img.height / 3.78;
+                fromY = img.height / 2.90;
+                dateY = img.height / 4.6;
+            }
             // Draw image
             ctx.drawImage(img, 0, 0);
 
@@ -265,7 +321,7 @@ const TextOnImageEditor = () => {
                             <img
                                 src={processedImage}
                                 alt="Processed"
-                                className="max-w-full max-h-[800px] object-contain rounded-lg"
+                                className="max-w-full max-h-[500px] object-contain rounded-lg"
                             />
                         </div>
                         <Button
